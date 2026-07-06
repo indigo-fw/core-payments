@@ -8,6 +8,10 @@ Multi-provider payment infrastructure — provider registry, Stripe integration,
 
 **Project owns:** Provider configs (`config/payment-providers.ts`), `config/deps/payments-deps.ts`, webhook routes.
 
+## Org Scoping
+
+Payments are org-scoped, not user-scoped: `saas_payment_transactions.organizationId` is required (FK, cascade); `userId` is optional attribution only. Resolve the org via DI `resolveOrgId` — never key transactions by user.
+
 ## DI (`setPaymentsDeps()`)
 
 `getEnabledProviderConfigs`, `getPlan` / `getPlanByProviderPriceId` / `getProviderPriceId`, `resolveOrgId`, `broadcastEvent`.
